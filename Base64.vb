@@ -13,3 +13,4 @@
         FromBase64 = String.Concat(Str.Replace("=", "").Select(Function(b) Convert.ToString(Base64.IndexOf(b), 2).PadLeft(6, "0")))
         Return System.Text.Encoding.Default.GetString(Enumerable.Range(0, CInt(Math.Floor(FromBase64.Length / 8))).Select(Function(b) Convert.ToByte(FromBase64.Substring(b * 8, 8), 2)).ToArray)
     End Function
+    
