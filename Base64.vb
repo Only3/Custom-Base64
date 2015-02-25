@@ -1,5 +1,5 @@
 
-Function ToBase64(Str As String, Optional Base64 As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/") As String
+    Function ToBase64(Str As String, Optional Base64 As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/") As String
         ToBase64 = String.Concat(System.Text.Encoding.Default.GetBytes(Str).Select(Function(b) Convert.ToString(b, 2).PadLeft(8, "0")))
         Dim Len = ToBase64.Length - CInt(Math.Floor(ToBase64.Length / 6)) * 6
         If Len > 0 Then
@@ -12,5 +12,5 @@ Function ToBase64(Str As String, Optional Base64 As String = "ABCDEFGHIJKLMNOPQR
     Function FromBase64(Str As String, Optional Base64 As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/") As String
         FromBase64 = String.Concat(Str.Replace("=", "").Select(Function(b) Convert.ToString(Base64.IndexOf(b), 2).PadLeft(6, "0")))
         Return System.Text.Encoding.Default.GetString(Enumerable.Range(0, CInt(Math.Floor(FromBase64.Length / 8))).Select(Function(b) Convert.ToByte(FromBase64.Substring(b * 8, 8), 2)).ToArray)
-End Function
+    End Function
     
